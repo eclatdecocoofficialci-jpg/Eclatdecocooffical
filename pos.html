@@ -2,78 +2,51 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Éclat de Coco - POS</title>
+<title>POS - Éclat de Coco</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+<header>
+  <h1>Éclat de Coco – POS</h1>
+</header>
+
 <div class="pos-container">
 
   <!-- LEFT -->
-  <div class="left-panel">
-
-    <h3>📦 Catégories</h3>
-    <div id="category-boxes"></div>
-
-    <h3>🏷 Produits</h3>
-    <table class="mini-table">
-      <thead>
-        <tr>
-          <th>Code</th>
-          <th>Produit</th>
-          <th>Stock</th>
-        </tr>
-      </thead>
-      <tbody id="product-grid"></tbody>
-    </table>
-
-  </div>
+  <div class="left-panel" id="categories"></div>
 
   <!-- CENTER -->
   <div class="center-panel">
 
-    <h3>🧮 Calculatrice</h3>
-    <input type="text" id="display" readonly>
+    <h2>Rechercher un produit</h2>
+    <input type="text" id="search" placeholder="Nom du produit...">
+
+    <div id="products"></div>
+
+    <h3>Calculatrice</h3>
+    <input id="calc" value="0" readonly>
 
     <div class="calc">
-      <button>1</button><button>2</button><button>3</button>
-      <button>4</button><button>5</button><button>6</button>
-      <button>7</button><button>8</button><button>9</button>
-      <button>0</button><button>C</button>
-    </div>
-
-    <div class="selected-box">
-      <h3 id="selected-name">-</h3>
-      <p>Prix: <span id="selected-price">0</span> FCFA</p>
-
-      <button onclick="minusQty()">-</button>
-      <span id="qty">1</span>
-      <button onclick="plusQty()">+</button>
-
-      <br><br>
-      <button onclick="addToCart()">Ajouter à la facture</button>
+      <button>7</button><button>8</button><button>9</button><button>+</button>
+      <button>4</button><button>5</button><button>6</button><button>-</button>
+      <button>1</button><button>2</button><button>3</button><button>*</button>
+      <button>0</button><button>C</button><button>=</button><button>/</button>
     </div>
 
   </div>
 
   <!-- RIGHT -->
-  <div class="right-panel" id="invoice-section">
+  <div class="right-panel">
 
-    <h3>🧾 Facture</h3>
-    <h4>N° <span id="invoice-id"></span></h4>
+    <h2>Bienvenue à Éclat de Coco</h2>
 
-    <h2>✨ Éclat de Coco Officiel</h2>
-    <p>Abidjan - Côte d'Ivoire</p>
-
-    <input type="date" id="invoice-date">
-
-    <input type="text" id="client-name" placeholder="Client">
-    <input type="text" id="client-phone" placeholder="Téléphone">
-    <input type="text" id="client-address" placeholder="Adresse">
+    <input placeholder="Nom du client">
+    <input placeholder="Téléphone">
+    <input placeholder="Adresse">
 
     <table>
       <thead>
@@ -86,16 +59,7 @@
       <tbody id="invoice"></tbody>
     </table>
 
-    <input type="number" id="delivery" placeholder="Livraison">
-
-    <h2 id="total">0 FCFA</h2>
-
-    <div class="btn-row">
-      <button id="print-btn">🖨 Imprimer</button>
-      <button id="save-btn">💾 Sauvegarder</button>
-    </div>
-
-    <p class="thanks">Merci 💗</p>
+    <h3 id="total">0 FCFA</h3>
 
   </div>
 
