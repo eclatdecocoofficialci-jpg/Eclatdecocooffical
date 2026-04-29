@@ -1,70 +1,72 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<title>POS - Éclat de Coco</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+const categories = [
+  "Savon","Lotion","Body Butter","Masque Cheveux","Sérum Cheveux","Sérum Visage"
+];
 
-<link rel="stylesheet" href="style.css">
-</head>
+const products = [
+  {name:"Rose vanille", price:3000, category:"Savon"},
+  {name:"Velours café", price:3000, category:"Savon"}
+];
 
-<body>
+let invoice = [];
 
-<header>
-  <h1>Éclat de Coco – POS</h1>
-</header>
+const catBox = document.getElementById("categories");
+const prodBox = document.getElementById("products");
+const invoiceBox = document.getElementById("invoice");
+const totalEl = document.getElementById("total");
 
-<div class="pos-container">
+/* CATEGORIES */
+categories.forEach(c=>{
+  let div=document.createElement("div");
+  div.className="category";
+  div.innerText=c;
+  div.onclick=()=>showProducts(c);
+  catBox.appendChild(div);
+});
 
-  <!-- LEFT -->
-  <div class="left-panel" id="categories"></div>
+/* PRODUCTS */
+function showProducts(cat){
+  prodBox.innerHTML="";
 
-  <!-- CENTER -->
-  <div class="center-panel">
+  products.filter(p=>p.category===cat).forEach(p=>{
+    let div=document.createElement("div");
 
-    <h2>Rechercher un produit</h2>
-    <input type="text" id="search" placeholder="Nom du produit...">
+    div.innerHTML = `
+      ${p.name} - ${p.price} FCFA
+      <button onclick="addToCart('${p.name}',${p.price})">+</button>
+    `;
 
-    <div id="products"></div>
+    prodBox.appendChild(div);
+  });
+}
 
-    <h3>Calculatrice</h3>
-    <input id="calc" value="0" readonly>
+/* ADD */
+function addToCart(name,price){
 
-    <div class="calc">
-      <button>7</button><button>8</button><button>9</button><button>+</button>
-      <button>4</button><button>5</button><button>6</button><button>-</button>
-      <button>1</button><button>2</button><button>3</button><button>*</button>
-      <button>0</button><button>C</button><button>=</button><button>/</button>
-    </div>
+  let item = invoice.find(i=>i.name===name);
 
-  </div>
+  if(item){
+    item.qty++;
+  } else {
+    invoice.push({name,price,qty:1});
+  }
 
-  <!-- RIGHT -->
-  <div class="right-panel">
+  renderInvoice();
+}
 
-    <h2>Bienvenue à Éclat de Coco</h2>
+/* RENDER */
+function renderInvoice(){
 
-    <input placeholder="Nom du client">
-    <input placeholder="Téléphone">
-    <input placeholder="Adresse">
+  invoiceBox.innerHTML="";
+  let total=0;
 
-    <table>
-      <thead>
-        <tr>
-          <th>Produit</th>
-          <th>Qté</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody id="invoice"></tbody>
-    </table>
+  invoice.forEach(i=>{
+    let t=i.qty*i.price;
+    total+=t;
 
-    <h3 id="total">0 FCFA</h3>
+    let tr=document.createElement("tr");
+    tr.innerHTML=`<td>${i.name}</td><td>${i.qty}</td><td>${t}</td>`;
+    invoiceBox.appendChild(tr);
+  });
 
-  </div>
-
-</div>
-
-<script src="script.js"></script>
-</body>
-</html>
+  totalEl.innerText=total+" FCFA";
+}
