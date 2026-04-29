@@ -2,9 +2,8 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>POS - Éclat de Coco</title>
+<title>Éclat de Coco - POS</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -16,37 +15,65 @@
 
 <div class="pos-container">
 
-  <!-- LEFT -->
-  <div class="left-panel" id="categories"></div>
+  <!-- LEFT : CATEGORIES -->
+  <div class="left-panel">
+    <h3>Catégories</h3>
+    <div id="category-boxes"></div>
+  </div>
 
   <!-- CENTER -->
   <div class="center-panel">
 
-    <h2>Rechercher un produit</h2>
-    <input type="text" id="search" placeholder="Nom du produit...">
+    <h3>🔎 Recherche</h3>
+    <input type="text" id="search" placeholder="Nom produit">
 
-    <div id="products"></div>
+    <div id="product-list"></div>
 
-    <h3>Calculatrice</h3>
-    <input id="calc" value="0" readonly>
+    <h3>🧮 Calculatrice</h3>
+    <input id="display" readonly>
 
     <div class="calc">
-      <button>7</button><button>8</button><button>9</button><button>+</button>
-      <button>4</button><button>5</button><button>6</button><button>-</button>
-      <button>1</button><button>2</button><button>3</button><button>*</button>
-      <button>0</button><button>C</button><button>=</button><button>/</button>
+      <button onclick="press(7)">7</button>
+      <button onclick="press(8)">8</button>
+      <button onclick="press(9)">9</button>
+      <button onclick="press('+')">+</button>
+
+      <button onclick="press(4)">4</button>
+      <button onclick="press(5)">5</button>
+      <button onclick="press(6)">6</button>
+      <button onclick="press('-')">-</button>
+
+      <button onclick="press(1)">1</button>
+      <button onclick="press(2)">2</button>
+      <button onclick="press(3)">3</button>
+      <button onclick="press('*')">×</button>
+
+      <button onclick="press(0)">0</button>
+      <button onclick="clearCalc()">C</button>
+      <button onclick="calculate()">=</button>
+      <button onclick="press('/')">÷</button>
+    </div>
+
+    <div style="margin-top:10px;">
+      <button onclick="setDiscount(20)">-20%</button>
+      <button onclick="setDiscount(50)">-50%</button>
     </div>
 
   </div>
 
-  <!-- RIGHT -->
-  <div class="right-panel">
+  <!-- RIGHT : FACTURE -->
+  <div class="right-panel" id="invoice-section">
 
-    <h2>Bienvenue à Éclat de Coco</h2>
+    <h2 style="text-align:center;">✨ Bienvenue à Éclat de Coco</h2>
+    <p style="text-align:center;">Abidjan - Côte d'Ivoire</p>
 
-    <input placeholder="Nom du client">
-    <input placeholder="Téléphone">
-    <input placeholder="Adresse">
+    <h4>N° Facture : <span id="invoice-id"></span></h4>
+
+    <input type="date" id="date">
+
+    <input type="text" id="client-name" placeholder="Nom client">
+    <input type="text" id="client-phone" placeholder="Téléphone">
+    <input type="text" id="client-address" placeholder="Adresse">
 
     <table>
       <thead>
@@ -59,7 +86,15 @@
       <tbody id="invoice"></tbody>
     </table>
 
-    <h3 id="total">0 FCFA</h3>
+    <h4>Livraison</h4>
+    <input type="number" id="delivery" placeholder="Frais livraison">
+
+    <h2 id="total">0 FCFA</h2>
+
+    <button onclick="window.print()">🖨 Imprimer</button>
+    <button onclick="saveSale()">💾 Sauvegarder</button>
+
+    <p style="text-align:center;">Merci de choisir Éclat de Coco 💗</p>
 
   </div>
 
