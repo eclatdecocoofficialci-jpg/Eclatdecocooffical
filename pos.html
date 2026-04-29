@@ -1,72 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Éclat de Coco - POS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>Éclat de Coco – POS</h1>
+</header>
+
 <div class="pos-container">
 
-  <!-- LEFT -->
+  <!-- LEFT : CATEGORIES -->
   <div class="left-panel">
-
-    <h3>🔎 Recherche Produit</h3>
-    <input type="text" id="search" placeholder="Nom ou code produit">
-    <div id="results"></div>
-
     <h3>📦 Catégories</h3>
     <div id="category-boxes"></div>
-
-    <h3>🛍 Produits</h3>
-    <div id="product-grid"></div>
-
   </div>
 
   <!-- CENTER -->
   <div class="center-panel">
 
+    <h3>🔎 Recherche</h3>
+    <input type="text" id="search" placeholder="Nom produit">
+
+    <div id="product-list"></div>
+
     <h3>🧮 Calculatrice</h3>
-    <input type="text" id="display" readonly>
+    <input id="display" readonly>
 
     <div class="calc">
-      <button>1</button><button>2</button><button>3</button>
-      <button>4</button><button>5</button><button>6</button>
-      <button>7</button><button>8</button><button>9</button>
-      <button>0</button><button>C</button>
+      <button onclick="press(7)">7</button>
+      <button onclick="press(8)">8</button>
+      <button onclick="press(9)">9</button>
+      <button onclick="press('+')">+</button>
+
+      <button onclick="press(4)">4</button>
+      <button onclick="press(5)">5</button>
+      <button onclick="press(6)">6</button>
+      <button onclick="press('-')">-</button>
+
+      <button onclick="press(1)">1</button>
+      <button onclick="press(2)">2</button>
+      <button onclick="press(3)">3</button>
+      <button onclick="press('*')">×</button>
+
+      <button onclick="press(0)">0</button>
+      <button onclick="clearCalc()">C</button>
+      <button onclick="calculate()">=</button>
+      <button onclick="press('/')">÷</button>
     </div>
 
-    <div class="selected-box">
-
-      <h3 id="selected-name">-</h3>
-      <p>Prix: <span id="selected-price">0</span> FCFA</p>
-
-      <button onclick="minusQty()">-</button>
-      <span id="qty">1</span>
-      <button onclick="plusQty()">+</button>
-
-      <br><br>
-      <button onclick="addToCart()">Ajouter à la facture</button>
-
+    <div style="margin-top:10px;">
+      <button onclick="setDiscount(20)">-20%</button>
+      <button onclick="setDiscount(50)">-50%</button>
     </div>
 
   </div>
 
-  <!-- RIGHT -->
+  <!-- RIGHT : FACTURE -->
   <div class="right-panel" id="invoice-section">
 
-    <h3>🧾 Facture</h3>
+    <h2 style="text-align:center;">✨ Bienvenue à Éclat de Coco</h2>
+    <p style="text-align:center;">Abidjan - Côte d'Ivoire</p>
 
-    <h4>N° <span id="invoice-id"></span></h4>
+    <h4>N° Facture : <span id="invoice-id"></span></h4>
 
-    <h2>✨ Bienvenue à Éclat de Coco Officiel</h2>
-    <p>Abidjan - Côte d'Ivoire</p>
+    <input type="date" id="date">
 
-    <hr>
-
-    <h4>📅 Date</h4>
-    <input type="date" id="invoice-date">
-
-    <hr>
-
-    <h4>Client</h4>
-    <input type="text" id="client-name">
-    <input type="text" id="client-phone">
-    <input type="text" id="client-address">
-
-    <hr>
+    <input type="text" id="client-name" placeholder="Nom client">
+    <input type="text" id="client-phone" placeholder="Téléphone">
+    <input type="text" id="client-address" placeholder="Adresse">
 
     <table>
       <thead>
@@ -79,25 +86,20 @@
       <tbody id="invoice"></tbody>
     </table>
 
-    <hr>
-
-    <h4>Livraison</h4>
-    <input type="number" id="delivery">
-
-    <hr>
+    <h4>🚚 Livraison</h4>
+    <input type="number" id="delivery" placeholder="Frais livraison">
 
     <h2 id="total">0 FCFA</h2>
 
-    <div style="display:flex; gap:10px;">
-      <button id="print-btn">🖨 Imprimer</button>
-      <button id="save-btn">💾 Sauvegarder</button>
-    </div>
+    <button onclick="window.print()">🖨 Imprimer</button>
+    <button onclick="saveSale()">💾 Sauvegarder</button>
 
-    <p style="text-align:center; margin-top:10px;">
-      Merci de choisir Éclat de Coco 💗
-    </p>
+    <p style="text-align:center;">Merci de choisir Éclat de Coco 💗</p>
 
   </div>
 
 </div>
 
+<script src="script.js"></script>
+</body>
+</html>
