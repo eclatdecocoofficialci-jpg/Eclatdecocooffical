@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Éclat de Coco - POS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<header>
+  <h1>✨ Éclat de Coco POS</h1>
+</header>
+
+<!-- MAIN CONTAINER -->
+<div class="pos-container">
+
+  <!-- LEFT: CATEGORIES + PRODUCTS -->
+  <div class="left-panel">
+
+    <h3>📦 Catégories</h3>
+    <div id="category-boxes"></div>
+
+    <h3>🛍 Produits</h3>
+    <div id="product-grid"></div>
+
+  </div>
+
+  <!-- CENTER: CALCULATOR -->
+  <div class="center-panel">
+
+    <h3>🧮 Calculatrice</h3>
+    <input type="text" id="display" readonly>
+
+    <div class="calc">
+      <button>1</button><button>2</button><button>3</button>
+      <button>4</button><button>5</button><button>6</button>
+      <button>7</button><button>8</button><button>9</button>
+      <button>0</button><button>C</button>
+    </div>
+
+    <div class="selected-box">
+
+      <h3 id="selected-name">-</h3>
+      <p>Prix: <span id="selected-price">0</span> FCFA</p>
+
+      <button onclick="minusQty()">-</button>
+      <span id="qty">1</span>
+      <button onclick="plusQty()">+</button>
+
+      <br><br>
+      <button onclick="addToCart()">Ajouter à la facture</button>
+
+    </div>
+
+  </div>
+
+  <!-- RIGHT: FACTURE -->
+  <div class="right-panel">
+
+    <h3>🧾 Facture</h3>
+
+    <p>N°: <span id="invoice-id"></span></p>
+
+    <p>✨ Bienvenue à Éclat de Coco</p>
+
+    <input type="date" id="invoice-date">
+
+    <input type="text" id="client-name" placeholder="Nom client">
+    <input type="text" id="client-phone" placeholder="Téléphone">
+    <input type="text" id="client-address" placeholder="Adresse">
+
+    <table>
+      <thead>
+        <tr>
+          <th>Produit</th>
+          <th>Qté</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody id="invoice"></tbody>
+    </table>
+
+    <input type="number" id="delivery" placeholder="Livraison">
+
+    <h2 id="total">0 FCFA</h2>
+
+    <div style="display:flex; gap:10px;">
+      <button id="print-btn">🖨 Imprimer</button>
+      <button id="save-btn">💾 Sauvegarder</button>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
