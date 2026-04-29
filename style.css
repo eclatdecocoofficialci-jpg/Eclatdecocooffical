@@ -196,3 +196,30 @@ button:hover {
     grid-template-columns: 1fr;
   }
 }
+.mini-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.mini-table th {
+  background: #f8bbd0;
+  color: #880e4f;
+  padding: 8px;
+  font-size: 13px;
+}
+
+.mini-table td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #fce4ec;
+  font-size: 13px;
+}
+
+.mini-table tr:hover {
+  background: #fff0f6;
+  cursor: pointer;
+}
